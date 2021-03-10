@@ -10,6 +10,6 @@ All the collected data is based on [filmweb.pl](https://www.filmweb.pl/awards).
 
 ***modeling.py*** is an executable file which enables a user to pick a category and see a predicted nominees.
 
-***preview.py*** is a view from Python Console while executing modeling.py.
+***preview.png*** is a view from Python Console while executing modeling.py.
 
 After Oscars nominations' announcement (March 15th, 2021) I'll upload a file summarizing accuracy of my model.
