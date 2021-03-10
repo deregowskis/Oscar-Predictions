@@ -69,29 +69,29 @@ def main():
     print("16 - Best Film Editing")
     print()
     input_category = input("Type a number (1-16): ")
-    while (int(input_category) != 1 and
-           int(input_category) != 2 and
-           int(input_category) != 3 and
-           int(input_category) != 4 and
-           int(input_category) != 5 and
-           int(input_category) != 6 and
-           int(input_category) != 7 and
-           int(input_category) != 8 and
-           int(input_category) != 9 and
-           int(input_category) != 10 and
-           int(input_category) != 11 and
-           int(input_category) != 12 and
-           int(input_category) != 13 and
-           int(input_category) != 14 and
-           int(input_category) != 15 and
-           int(input_category) != 16):
+    while (input_category != "1" and
+           input_category != "2" and
+           input_category != "3" and
+           input_category != "4" and
+           input_category != "5" and
+           input_category != "6" and
+           input_category != "7" and
+           input_category != "8" and
+           input_category != "9" and
+           input_category != "10" and
+           input_category != "11" and
+           input_category != "12" and
+           input_category != "13" and
+           input_category != "14" and
+           input_category != "15" and
+           input_category != "16"):
         input_category = input("Incorrect input. Type a number (1-16): ")
     input_category = int(input_category)
     print()
     PredictCategory(input_category)
     print()
     input_another = input("Would you like to predict another category? (y/n): ")
-    while input_another != "y" and input_another != "n":
+    while (input_another != "y" and input_another != "n"):
         input_another = input("Incorrect input. Would you like to predict another category? (y/n): ")
     if(input_another=="y"):
         main()
