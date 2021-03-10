@@ -6,6 +6,8 @@ or 1, sometimes 2) that indicates how many nominations did the film achieved in 
 
 ***Oscars-TestingData.csv*** contains the same data about 2021 movies except for Oscars nominations (61 movies x 84 categories).
 
+All the collected data is based on [filmweb.pl](https://www.filmweb.pl/awards).
+
 ***modeling.py*** is an executable file which enables a user to pick a category and see a predicted nominees.
 
 ***preview.py*** is a view from Python Console while executing modeling.py.
