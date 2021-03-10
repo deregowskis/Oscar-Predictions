@@ -8,4 +8,6 @@ or 1, sometimes 2) that indicates how many nominations did the film achieved in 
 
 ***modeling.py*** is an executable file which enables a user to pick a category and see a predicted nominees.
 
+***preview.py*** is a view from Python Console while executing modeling.py.
+
 After Oscars nominations' announcement (March 15th, 2021) I'll upload a file summarizing accuracy of my model.
