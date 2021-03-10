@@ -23,11 +23,12 @@ def PredictCategory(input_category):
                              ['B-Kost', 'CC-Kost', 'CC-KostW', 'CDG'],
                              ['B-ChF', 'CC-ChF', 'CC-ChFW'],
                              ['B-Efekty', 'CC-Efekty', 'CC-EfektyW'],
-                             ['B-Sound', 'CC-Sound', 'CC-SoundW', 'ZS']
+                             ['B-Sound', 'ZS'],
+                             ['B-Mon','CC-Mon','CC-MonW']
                              ]
     category_to_predict = [[], ['O-Film', ], ['O-Dir'], ['O-M1'], ['O-K1'], ['O-M2'], ['O-K2'], ['O-ScreenO'],
                            ['O-ScreenA'],
-                           ['O-Zdj'], ['O-Music'], ['O-Scen'], ['O-Kost'], ['O-ChF'], ['O-Efekty'], ['O-Sound']]
+                           ['O-Zdj'], ['O-Muzyka'], ['O-Scen'], ['O-Kost'], ['O-ChF'], ['O-Efekty'], ['O-Sound'],['O-Mont']]
     pipe = Pipeline(
         [
             ('linear-model', LinearRegression())
@@ -65,8 +66,9 @@ def main():
     print("13 - Best Make-up and Hairstyling")
     print("14 - Best Visual Effects")
     print("15 - Best Sound Mixing")
+    print("16 - Best Film Editing")
     print()
-    input_category = input("Type a number (1-15): ")
+    input_category = input("Type a number (1-16): ")
     while (int(input_category) != 1 and
            int(input_category) != 2 and
            int(input_category) != 3 and
@@ -81,8 +83,9 @@ def main():
            int(input_category) != 12 and
            int(input_category) != 13 and
            int(input_category) != 14 and
-           int(input_category) != 15):
-        input_category = input("Incorrect input. Type a number (1-15): ")
+           int(input_category) != 15 and
+           int(input_category) != 16):
+        input_category = input("Incorrect input. Type a number (1-16): ")
     input_category = int(input_category)
     print()
     PredictCategory(input_category)
