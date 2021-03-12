@@ -1,9 +1,10 @@
 import pandas as pd
-from sklearn.linear_model import LinearRegression, Lasso
+from sklearn.linear_model import LinearRegression, Lasso, LogisticRegression
 from sklearn.pipeline import Pipeline
 
-training_data = pd.read_csv('Oscars-TrainingData.csv',sep=';',encoding='latin1')
-testing_data = pd.read_csv('Oscars-TestingData.csv',sep=';',encoding='latin1')
+training_data = pd.read_csv('Oscars-TrainingData.csv', sep=';', encoding='latin1')
+testing_data = pd.read_csv('Oscars-TestingData.csv', sep=';', encoding='latin1')
+
 
 def PredictCategory(input_category):
     categories_to_analyse = [[], ['GG-Drama', 'GG-DramaW', 'GG-Comedy', 'GG-ComedyW', 'B-Film',
@@ -24,18 +25,40 @@ def PredictCategory(input_category):
                              ['B-ChF', 'CC-ChF', 'CC-ChFW'],
                              ['B-Efekty', 'CC-Efekty', 'CC-EfektyW'],
                              ['B-Sound', 'ZS'],
-                             ['B-Mon','CC-Mon','CC-MonW','ACE']
+                             ['B-Mon', 'CC-Mon', 'CC-MonW', 'ACE']
                              ]
     category_to_predict = [[], ['O-Film', ], ['O-Dir'], ['O-M1'], ['O-K1'], ['O-M2'], ['O-K2'], ['O-ScreenO'],
                            ['O-ScreenA'],
-                           ['O-Zdj'], ['O-Muzyka'], ['O-Scen'], ['O-Kost'], ['O-ChF'], ['O-Efekty'], ['O-Sound'],['O-Mont']]
+                           ['O-Zdj'], ['O-Muzyka'], ['O-Scen'], ['O-Kost'], ['O-ChF'], ['O-Efekty'], ['O-Sound'],
+                           ['O-Mont']]
+    pipe = Pipeline(
+        [
+            ('logistic-model', LogisticRegression())
+        ]
+    )
+    pipe.fit(training_data[categories_to_analyse[input_category]],
+             training_data[category_to_predict[input_category]].values.ravel())
+    pipe_prediction = pipe.predict_proba(testing_data[categories_to_analyse[input_category]])
+    predictions_df = pd.DataFrame(pipe_prediction[:,1])
+    testing_data[category_to_predict[input_category]] = predictions_df
+    if input_category == 1:
+        number = 10
+    else:
+        number = 5
+    sorted = testing_data.sort_values(by=category_to_predict[input_category], ascending=False).head(number)
+    list_of_nominees = sorted.iloc[:, 0].values
+    print("Predictions for this category (logistic regression model):")
+    for i in range(number):
+        print(str(i+1) + ". " + list_of_nominees[i])
+    print("")
+
     pipe = Pipeline(
         [
             ('linear-model', LinearRegression())
         ]
     )
     pipe.fit(training_data[categories_to_analyse[input_category]],
-                    training_data[category_to_predict[input_category]])
+             training_data[category_to_predict[input_category]])
     pipe_prediction = pipe.predict(testing_data[categories_to_analyse[input_category]])
     predictions_df = pd.DataFrame(pipe_prediction)
     testing_data[category_to_predict[input_category]] = predictions_df
@@ -45,9 +68,10 @@ def PredictCategory(input_category):
         number = 5
     sorted = testing_data.sort_values(by=category_to_predict[input_category], ascending=False).head(number)
     list_of_nominees = sorted.iloc[:, 0].values
-    print("Predictions for this category:")
-    for element in list_of_nominees:
-        print(element)
+    print("Predictions for this category (linear regression model):")
+    for i in range(number):
+        print(str(i+1) + ". " + list_of_nominees[i])
+    print("")
 
 def main():
     print("Choose category to predict:")
@@ -93,10 +117,11 @@ def main():
     input_another = input("Would you like to predict another category? (y/n): ")
     while (input_another != "y" and input_another != "n"):
         input_another = input("Incorrect input. Would you like to predict another category? (y/n): ")
-    if(input_another=="y"):
+    if (input_another == "y"):
         main()
-    if(input_another=="n"):
+    if (input_another == "n"):
         input_last = input("Type ENTER to quit.")
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
