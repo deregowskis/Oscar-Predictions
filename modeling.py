@@ -24,7 +24,7 @@ def PredictCategory(input_category):
                              ['B-ChF', 'CC-ChF', 'CC-ChFW'],
                              ['B-Efekty', 'CC-Efekty', 'CC-EfektyW'],
                              ['B-Sound', 'ZS'],
-                             ['B-Mon','CC-Mon','CC-MonW']
+                             ['B-Mon','CC-Mon','CC-MonW','ACE']
                              ]
     category_to_predict = [[], ['O-Film', ], ['O-Dir'], ['O-M1'], ['O-K1'], ['O-M2'], ['O-K2'], ['O-ScreenO'],
                            ['O-ScreenA'],
