@@ -42,7 +42,7 @@ def PredictCategory(input_category):
     predictions_df = pd.DataFrame(pipe_prediction[:,1])
     testing_data[category_to_predict[input_category]] = predictions_df
     if input_category == 1:
-        number = 10
+        number = 8
     else:
         number = 5
     sorted = testing_data.sort_values(by=category_to_predict[input_category], ascending=False).head(number)
@@ -63,7 +63,7 @@ def PredictCategory(input_category):
     predictions_df = pd.DataFrame(pipe_prediction)
     testing_data[category_to_predict[input_category]] = predictions_df
     if input_category == 1:
-        number = 10
+        number = 8
     else:
         number = 5
     sorted = testing_data.sort_values(by=category_to_predict[input_category], ascending=False).head(number)
@@ -89,7 +89,7 @@ def main():
     print("12 - Best Costumes")
     print("13 - Best Make-up and Hairstyling")
     print("14 - Best Visual Effects")
-    print("15 - Best Sound Mixing")
+    print("15 - Best Sound")
     print("16 - Best Film Editing")
     print()
     input_category = input("Type a number (1-16): ")
